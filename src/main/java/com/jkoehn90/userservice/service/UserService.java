@@ -7,20 +7,29 @@ import com.jkoehn90.userservice.entity.Role;
 import com.jkoehn90.userservice.entity.User;
 import com.jkoehn90.userservice.repository.UserRepository;
 import com.jkoehn90.userservice.security.JwtUtil;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Lazy;
 
 @Service
-@RequiredArgsConstructor // Lombok: generates constructor for all final fields (constructor injector)
 public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
+
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       JwtUtil jwtUtil,
+                       @Lazy AuthenticationManager authenticationManager) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
+        this.authenticationManager = authenticationManager;
+    }
 
     public AuthResponse register(RegisterRequest request){
 

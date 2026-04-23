@@ -15,10 +15,10 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    @Value("{jwt.secret}")
+    @Value("${jwt.secret}")
     private String secret;
 
-    @Value("{jwt.expiration}")
+    @Value("${jwt.expiration}")
     private long expiration;
 
     //Generate a JWT token for a given email

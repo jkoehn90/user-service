@@ -1,4 +1,4 @@
-package com.jkoehn90.userservice.config;
+package com.jkoehn90.userservice.security;
 
 import com.jkoehn90.userservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

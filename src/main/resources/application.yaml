@@ -2,30 +2,30 @@ spring:
   application:
     name: user-service
 
-  jwt:
-    secret: your-256-bit-secret-key-here-make-it-long-and-random
-    expiration: 86400000   # 24 hours in milliseconds
-
   datasource:
     url: jdbc:postgresql://localhost:5432/userdb
     username: postgres
     password: yourpassword
     driver-class-name: org.postgresql.Driver
 
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
       hibernate:
-        ddl-auto: update        # Auto-creates/updates tables based on your entities
-      show-sql: true            # Logs SQL queries to console, helpful during development
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  server:
-    port: 8081
+server:
+  port: 8081
 
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://localhost:8761/eureka/   # Points to your Eureka server
-    instance:
-      prefer-ip-address: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: your-256-bit-secret-key-here-make-it-long-and-random
+  expiration: 86400000
