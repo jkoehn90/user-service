@@ -35,7 +35,7 @@ public class UserService {
 
         // Check if email is already taken
         if (userRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException("Email already registered.");
+            throw new RuntimeException("Email already registered");
         }
 
         // Build and save the new user
@@ -68,7 +68,7 @@ public class UserService {
 
         // If authentication passed, fetch user and generate token
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found."));
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         String token = jwtUtil.generateToken(user.getEmail());
         return AuthResponse.builder()
